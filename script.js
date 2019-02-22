@@ -94,8 +94,8 @@ function createBlocks(sortDistance) {
     };
 }
 
-function getDataRender() {
-    getJsonAsync("https://data-live.flightradar24.com/zones/fcgi/feed.js?bounds=56.84,55.27,33.48,41.48").then(json => {
+function getDataRender(urlString) {
+    getJsonAsync(urlString).then(json => {
 
         createBlocks(parseFly(json));
         //console.log("is work");
@@ -106,8 +106,10 @@ function getDataRender() {
     });
 }
 
-getDataRender();
+let urlApi = 'https://data-live.flightradar24.com/zones/fcgi/feed.js?bounds=56.84,55.27,33.48,41.48';
+
+getDataRender(urlApi);
 
 setInterval(function () {
-    getDataRender();
+    getDataRender(urlApi);
 }, selfRandom(3000, 5000));
